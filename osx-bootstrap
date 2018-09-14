@@ -80,7 +80,16 @@ gimme postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 
 # install gui livelihood
-gimme_cask google-chrome iterm2
+
+if ! [ -e "/Applications/Google Chrome.app" ]; then
+  gimme_cask google-chrome
+fi
+if ! [ -e /Applications/iTerm.app ]; then
+  gimme_cask iterm2
+fi
+if ! [ -e /Applications/slack.app ]; then
+  gimme_cask slack
+fi
 
 # install Onsi's ShiftIt which supports sizing in thirds
 if ! [ -e /Applications/ShiftIt.app ]; then
