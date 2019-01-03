@@ -10,3 +10,6 @@
 	pushInsteadOf = git://github.com/
 [trailer]
 	ifexists = addIfDifferent
+[user]
+	email = byoussef@pivotal.io
+	name = Bishoy Youssef
