@@ -102,6 +102,13 @@ gimme_all jq htop stress direnv the_silver_searcher lastpass-cli
 if ! [ -e /Applications/VirtualBox.app ]; then
   gimme_cask vagrant virtualbox
 fi
+
+if ! [ -e /Applications/Docker.app ]; then
+  gimme_cask docker
+fi
+
+gimme jump
+
 # install bosh + tooling
 gimme cloudfoundry/tap/bosh-cli
 stow bosh
