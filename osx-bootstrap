@@ -107,7 +107,13 @@ if ! [ -e /Applications/Docker.app ]; then
   gimme_cask docker
 fi
 
-gimme jump
+gimme jump yarn
+
+gimme cloudfoundry/tap/credhub-cli
+
+
+
+# TODO add custom terminal appearence
 
 # install bosh + tooling
 gimme cloudfoundry/tap/bosh-cli
