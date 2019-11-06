@@ -8,7 +8,7 @@ cd $(dirname $0)
 # global assumptions
 mkdir -p ~/bin ~/.config
 
-NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
+NEOVIM_CONFIG='https://github.com/youssb/dot-nvim.git'
 
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/darwin_amd64.tar.gz'
 
@@ -42,6 +42,7 @@ fi
 
 # install cask
 brew tap homebrew/cask
+gimme cask
 
 # install simple config manager
 gimme stow
@@ -84,34 +85,38 @@ ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 if ! [ -e "/Applications/Google Chrome.app" ]; then
   gimme_cask google-chrome
 fi
+
 if ! [ -e /Applications/iTerm.app ]; then
   gimme_cask iterm2
 fi
+
 if ! [ -e /Applications/slack.app ]; then
   gimme_cask slack
 fi
 
 # install Onsi's ShiftIt which supports sizing in thirds
 if ! [ -e /Applications/ShiftIt.app ]; then
-  curl -fsSL https://raw.github.com/onsi/ShiftIt/master/ShiftIt.zip -o /tmp/ShiftIt.zip
+  curl -fsSL "https://github.com/fikovnik/ShiftIt/releases/download/version-1.6.6/ShiftIt-1.6.6.zip" -o /tmp/ShiftIt.zip
   unzip /tmp/ShiftIt.zip -d /Applications
 fi
 
 # install cli livelihood
+<<<<<<< HEAD
 gimme_all jq htop stress direnv the_silver_searcher lastpass-cli
 if ! [ -e /Applications/VirtualBox.app ]; then
   gimme_cask vagrant virtualbox
 fi
+=======
+gimme_all jq htop stress direnv the_silver_searcher lastpass-cli jump autojump
+
+# install frontent stuff
+gimme elm yarn
+npm install -g elm-test
+>>>>>>> b7e83e0... osx-bootstrap latest
 
 if ! [ -e /Applications/Docker.app ]; then
   gimme_cask docker
 fi
-
-gimme jump yarn
-
-gimme cloudfoundry/tap/credhub-cli
-
-
 
 # TODO add custom terminal appearence
 
