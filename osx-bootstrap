@@ -123,3 +123,7 @@ fi
 # install bosh + tooling
 gimme cloudfoundry/tap/bosh-cli
 stow bosh
+
+# install rload: a simple script to load github private key from lastpass
+install ./rload ~/bin/rload
+

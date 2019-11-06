@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rload() {
+ KEY=$(mktemp /tmp/secret.XXXXXX)
+ HOURS=$1
+ chmod 600 $KEY
+ lpass show github-key --field="Private Key" > $KEY
+ if [ -z $HOURS ]; then
+   HOURS=9
+ fi
+ /usr/bin/ssh-add -D
+ /usr/bin/ssh-add -t ${HOURS}H $KEY
+ rm "$KEY"
+}
+
+rload
