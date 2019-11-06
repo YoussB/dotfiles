@@ -73,9 +73,6 @@ curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 gimme go
 nvim --headless +GoInstallBinaries +qa
 
-# install node/elm/etc toolchain
-gimme node
-
 # install postgres
 gimme postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
@@ -110,9 +107,9 @@ fi
 gimme_all jq htop stress direnv the_silver_searcher lastpass-cli jump autojump
 
 # install frontent stuff
-gimme elm yarn
+gimme_all node elm yarn
 npm install -g elm-test
->>>>>>> b7e83e0... osx-bootstrap latest
+npm install -g elm-format
 
 if ! [ -e /Applications/Docker.app ]; then
   gimme_cask docker
