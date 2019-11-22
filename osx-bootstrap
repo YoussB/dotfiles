@@ -108,6 +108,7 @@ gimme_all jq htop stress direnv the_silver_searcher lastpass-cli jump autojump
 
 # install frontent stuff
 gimme_all node elm yarn
+npm install -g npm
 npm install -g elm-test
 npm install -g elm-format
 
@@ -120,6 +121,9 @@ fi
 # install bosh + tooling
 gimme cloudfoundry/tap/bosh-cli
 stow bosh
+
+gimme_cask google-cloud-sdk
+gcloud init
 
 # install rload: a simple script to load github private key from lastpass
 install ./rload ~/bin/rload

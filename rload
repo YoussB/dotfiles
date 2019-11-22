@@ -6,10 +6,12 @@ rload() {
  chmod 600 $KEY
  lpass show github-key --field="Private Key" > $KEY
  if [ -z $HOURS ]; then
-   HOURS=9
+   /usr/bin/ssh-add -D
+   /usr/bin/ssh-add $KEY
+ else
+   /usr/bin/ssh-add -D
+   /usr/bin/ssh-add -t ${HOURS}H $KEY
  fi
- /usr/bin/ssh-add -D
- /usr/bin/ssh-add -t ${HOURS}H $KEY
  rm "$KEY"
 }
 
