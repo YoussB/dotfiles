@@ -98,13 +98,7 @@ if ! [ -e /Applications/ShiftIt.app ]; then
 fi
 
 # install cli livelihood
-<<<<<<< HEAD
-gimme_all jq htop stress direnv the_silver_searcher lastpass-cli
-if ! [ -e /Applications/VirtualBox.app ]; then
-  gimme_cask vagrant virtualbox
-fi
-=======
-gimme_all jq htop stress direnv the_silver_searcher lastpass-cli jump autojump
+gimme_all jq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub
 
 # install frontent stuff
 gimme_all node elm yarn
@@ -122,6 +116,7 @@ fi
 gimme cloudfoundry/tap/bosh-cli
 stow bosh
 
+gimme_all helm
 gimme_cask google-cloud-sdk
 gcloud init
 

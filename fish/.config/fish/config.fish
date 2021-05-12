@@ -101,8 +101,6 @@ set fish_pager_color_description 555\x1eyellow
 set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
-status --is-interactive; and source (jump shell | psub)
-
 # automatically run tmux when in st
 if test $TERM = "xterm-256color" -a -z "$ITERM_PROFILE"
   if which tmux >/dev/null; and status --is-interactive
@@ -114,3 +112,5 @@ end
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pivotal/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/pivotal/Downloads/google-cloud-sdk/path.fish.inc'; end
+
+status --is-interactive; and source (jump shell fish | psub)

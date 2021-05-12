@@ -11,5 +11,13 @@
 [trailer]
 	ifexists = addIfDifferent
 [user]
-	email = byoussef@pivotal.io
+  email = byoussef@vmware.com
 	name = Bishoy Youssef
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[pull]
+	rebase = true
+[core]
+	editor = vim

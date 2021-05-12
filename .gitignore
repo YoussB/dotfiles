@@ -7,3 +7,4 @@ fish/.config/fish/fish_variables
 fish/.config/fish/fishd.*
 tmux/.tmux/plugins/*
 fonts/.fonts/.uuid
+.DS_Store
