@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e -x
+set -ex
 
 # stow is relative to this directory
 cd $(dirname $0)
@@ -29,8 +29,8 @@ function gimme_all() {
 
 function gimme_cask() {
   for x in "$@"; do
-    if ! brew cask list | grep "\\<$x\\>"; then
-      brew cask install "$x"
+    if ! brew list --cask | grep "\\<$x\\>"; then
+      brew install --cask "$x"
     fi
   done
 }
@@ -40,18 +40,21 @@ if ! which brew >/dev/null; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+export ZSH_DISABLE_COMPFIX=true
+rm -rf ~/.oh-my-zsh
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+
+cp -rf .zshrc ~/.zshrc
+# chsh -s $(which zsh)
+
 # install cask
 brew tap homebrew/cask
 gimme cask
 
 # install simple config manager
 gimme stow
-
-# install and switch to fish
-gimme fish
-grep "$(which fish)" /etc/shells >/dev/null || sudo sh -c "echo $(which fish) >> /etc/shells"
-finger $USER | grep "$(which fish)" >/dev/null || sudo chsh -s "$(which fish)" $(whoami)
-stow fish
 
 # install neovim as ~/bin/vim, + python support
 gimme_all neovim/neovim/neovim python
@@ -69,6 +72,10 @@ gimme git
 stow git
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
+#install zsh-plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 # install golang toolchain
 gimme go
 nvim --headless +GoInstallBinaries +qa
@@ -78,7 +85,6 @@ gimme postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 
 # install gui livelihood
-
 if ! [ -e "/Applications/Google Chrome.app" ]; then
   gimme_cask google-chrome
 fi
@@ -87,15 +93,24 @@ if ! [ -e /Applications/iTerm.app ]; then
   gimme_cask iterm2
 fi
 
-if ! [ -e /Applications/slack.app ]; then
-  gimme_cask slack
+if ! [ -e /Applications/firefox.app ]; then
+  gimme_cask firefox
 fi
 
-# install Onsi's ShiftIt which supports sizing in thirds
-if ! [ -e /Applications/ShiftIt.app ]; then
-  curl -fsSL "https://github.com/fikovnik/ShiftIt/releases/download/version-1.6.6/ShiftIt-1.6.6.zip" -o /tmp/ShiftIt.zip
-  unzip /tmp/ShiftIt.zip -d /Applications
+if ! [ -e /Applications/Microsoft Outlook.app ]; then
+  gimme_cask microsoft-outlook
 fi
+
+if ! [ -e /Applications/Spotify.app ]; then
+  gimme_cask spotify
+fi
+
+if ! [ -e /Applications/onedrive.app ]; then
+  gimme_cask onedrive
+fi
+
+gimme_cask rectangle
+
 
 # install cli livelihood
 gimme_all jq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub
@@ -118,6 +133,10 @@ stow bosh
 
 gimme_all helm
 gimme_cask google-cloud-sdk
+
+/bin/zsh  -c 'source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+/bin/zsh -c 'source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
 gcloud init
 
 # install rload: a simple script to load github private key from lastpass
