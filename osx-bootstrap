@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e -x
 
 # stow is relative to this directory
 cd $(dirname $0)
@@ -41,6 +41,7 @@ if ! which brew >/dev/null; then
 fi
 
 export ZSH_DISABLE_COMPFIX=true
+export RUNZSH=no
 rm -rf ~/.oh-my-zsh
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -120,16 +121,11 @@ gimme_all node elm yarn
 npm install -g npm
 npm install -g elm-test
 npm install -g elm-format
+npm install -g @angular/cli
 
 if ! [ -e /Applications/Docker.app ]; then
   gimme_cask docker
 fi
-
-# TODO add custom terminal appearence
-
-# install bosh + tooling
-gimme cloudfoundry/tap/bosh-cli
-stow bosh
 
 gimme_all helm
 gimme_cask google-cloud-sdk
