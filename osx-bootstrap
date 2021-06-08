@@ -135,6 +135,8 @@ gimme_cask google-cloud-sdk
 
 gcloud init
 
+gimme heroku/brew/heroku
+
 # install rload: a simple script to load github private key from lastpass
 install ./rload ~/bin/rload
 
