@@ -114,7 +114,7 @@ gimme_cask rectangle
 
 
 # install cli livelihood
-gimme_all jq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub
+gimme_all jq yq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub
 
 # install frontent stuff
 gimme_all node elm yarn
@@ -136,6 +136,9 @@ gimme_cask google-cloud-sdk
 gcloud init
 
 gimme heroku/brew/heroku
+
+brew tap teamookla/speedtest
+gimme speedtest
 
 # install rload: a simple script to load github private key from lastpass
 install ./rload ~/bin/rload
