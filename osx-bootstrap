@@ -112,6 +112,8 @@ fi
 
 gimme_cask rectangle
 
+gimme_cask pomotroid
+
 
 # install cli livelihood
 gimme_all az jq yq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub
