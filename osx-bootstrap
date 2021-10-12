@@ -77,6 +77,8 @@ curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+stow zsh
+
 # install golang toolchain
 gimme go
 nvim --headless +GoInstallBinaries +qa
@@ -114,9 +116,11 @@ gimme_cask rectangle
 
 gimme_cask pomotroid
 
+gimme_cask dbeaver-community
+
 
 # install cli livelihood
-gimme_all az jq yq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub
+gimme_all az jq yq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub wget
 
 # install frontent stuff
 gimme_all node elm yarn
