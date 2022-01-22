@@ -119,6 +119,7 @@ gimme_cask pomotroid
 gimme_cask dbeaver-community
 
 
+
 # install cli livelihood
 gimme_all az jq yq htop stress direnv the_silver_searcher lastpass-cli jump autojump watch hub wget
 
@@ -148,4 +149,8 @@ gimme speedtest
 
 # install rload: a simple script to load github private key from lastpass
 install ./rload ~/bin/rload
+
+# VScode press and hold for j in vim
+gimme_cask visual-studio-code
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
