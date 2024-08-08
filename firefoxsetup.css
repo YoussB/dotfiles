@@ -1,0 +1,11 @@
+/* #TabsToolbar { visibility: collapse !important; } */
+/* add this to /Users/bishoy/Library/Application Support/Firefox/Profiles/es7j3qkf.default-release-1666017682257 */
+/* Hide tab bar in FF Quantum */
+    #TabsToolbar {
+      visibility: collapse !important;
+      margin-bottom: 21px !important;
+    }
+
+    #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+      visibility: collapse !important;
+    }
