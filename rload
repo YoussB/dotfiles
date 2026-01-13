@@ -1,10 +1,17 @@
 #!/bin/bash
 
+set -x
+
 rload() {
  KEY=$(mktemp /tmp/secret.XXXXXX)
  HOURS=$1
  chmod 600 $KEY
- lpass show github-key --field="Private Key" > $KEY
+ OP_ITEM=${OP_ITEM:-github-key}
+ OP_FIELD=${OP_FIELD:-"Private Key"}
+ op item get "$OP_ITEM" --fields "label=$OP_FIELD" --reveal \
+   | sed -e 's/^"//' -e 's/"$//' \
+   | awk '{ sub(/\r$/, ""); if ($0 !~ /^[[:space:]]*$/) print }' \
+   > "$KEY"
  if [ -z $HOURS ]; then
    /usr/bin/ssh-add -D
    /usr/bin/ssh-add $KEY
